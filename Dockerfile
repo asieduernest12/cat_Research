@@ -14,8 +14,8 @@ FROM node:${NODE_VERSION}-alpine as base
 
 ARG MONGO_URL
 ENV MONGO_URL=$MONGO_URL
-ARG SERVER_URL
-ENV SERVER_URL=$SERVER_URL
+ARG SERVER_URI
+ENV SERVER_URI=$SERVER_URI
 
 # Set working directory for all build stages.
 WORKDIR /app
@@ -42,7 +42,6 @@ ARG MONGO_URL
 ENV MONGO_URL=$MONGO_URL
 ARG BUILD_ID
 ENV BUILD_ID=$BUILD_ID
-ENV BUILD_TIME=$(date)
 
 
 # Download additional development dependencies before building, as some projects require
@@ -56,7 +55,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 # Copy the rest of the source files into the image.
 COPY . .
 # Run the build script.
-RUN SEVER_URL="/" npm run build
+RUN VITE_SEVER_URI="/" BUILD_TIME=$(date) BUILD_ID=$BUILD_ID npm run build
 
 ################################################################################
 # Create a new stage to run the application with minimal runtime dependencies
@@ -68,7 +67,7 @@ ENV MONGO_URL=$MONGO_URL
 # Use production node environment by default.
 ENV NODE_ENV production
 
-RUN npm i -g vite
+# RUN npm i -g vite
 
 # Run the application as a non-root user.
 USER node

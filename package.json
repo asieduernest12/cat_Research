@@ -7,7 +7,7 @@
 		"dev:server": "npx nodemon -x \"node server.cjs\"",
 		"dev:client": "npx cross-env VITE_SERVER_URI=\"http://localhost:3000/\" npx vite --host 0.0.0.0",
 		"dev": "npx concurrently \"npm run dev:client\" \"npm run dev:server\"",
-		"build": "npx cross-env VITE_SERVER_URI=\"/\" tsc -b && VITE_SERVER_URI=\"/\" npx vite build",
+		"build": "npx cross-env VITE_SERVER_URI=\"/\" tsc -b && cross-env VITE_SERVER_URI=\"/\" npx vite build",
 		"start": "serve dist",
 		"lint": "eslint . --ext ts,tsx --fix",
 		"preview": "vite preview"

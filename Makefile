@@ -31,8 +31,8 @@ tag:
 	docker tag $(REPO):latest $(REPO):$(BUILD_ID)
 
 build:
-	bash -c "BUILD_ID=$(BUILD_ID) docker compose build"
-	make tag
+	bash -c "docker compose build --build-arg BUILD_ID=$(BUILD_ID)"
+
 
 run:
 	docker run --name cat --rm -P -p 3000:3000 --env-file=.env $(REPO):latest

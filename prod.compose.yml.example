@@ -3,7 +3,7 @@ services:
     image: docker.io/hongmhuynh1/cat-research:latest
     environment:
       NODE_ENV: production
-      SERVER_URL: "/"
+      SERVER_URI: "/"
     ports:
         - 3000:3000
         - 3001:3001
