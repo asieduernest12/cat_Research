@@ -41,6 +41,8 @@ FROM deps as build
 ARG MONGO_URL
 ENV MONGO_URL=$MONGO_URL
 ARG BUILD_ID
+ENV BUILD_ID=$BUILD_ID
+ENV BUILD_TIME=$(date)
 
 
 # Download additional development dependencies before building, as some projects require
@@ -54,7 +56,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 # Copy the rest of the source files into the image.
 COPY . .
 # Run the build script.
-RUN SEVER_URL="/" BUILD_TIME=date BUILD_ID=$BUILD_ID npm run build
+RUN SEVER_URL="/" npm run build
 
 ################################################################################
 # Create a new stage to run the application with minimal runtime dependencies
