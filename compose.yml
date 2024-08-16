@@ -11,10 +11,7 @@ services:
   server: &server
     build:
       context: .
-      tags:
-        - latest
-        - ${tag:-latest}
-    image: ${REPO:-hongmhuynh1/cat-research}
+    image: ${REPO:-hongmhuynh1/cat-research}:latest
 
     volumes:
       - .:/app
@@ -26,7 +23,7 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
-    command: ['sh', '-c', 'npm i && npm i nodemon && npm run dev:server']
+    command: ['sh', '-c', 'npm i --force && npm run dev:server']
     restart: unless-stopped
 
   client:
