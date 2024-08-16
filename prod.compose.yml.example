@@ -1,6 +1,6 @@
 services:
   server: &server
-    image: docker.io/hongmhuynh1/cat-research:${tag:-latest}
+    image: docker.io/hongmhuynh1/cat-research:latest
     environment:
       NODE_ENV: production
       SERVER_URL: "/"
@@ -9,3 +9,4 @@ services:
         - 3001:3001
     command: node server.cjs
     restart: unless-stopped
+    pull_policy: always
