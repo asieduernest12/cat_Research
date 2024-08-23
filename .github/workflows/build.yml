@@ -47,4 +47,6 @@ jobs:
           app-name: 'cat-res'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_87ecdf1e6a194e6a9280ea393106831c }}
-          images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_91d0ad005a914ef6b7c068cf12239ed6 }}/catty-res:${{ github.sha }}'
+          images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_91d0ad005a914ef6b7c068cf12239ed6 }}/catty-res:${{ env.SHA }}'
+          # images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_91d0ad005a914ef6b7c068cf12239ed6 }}/catty-res:${{ env.SHA }}'
+
